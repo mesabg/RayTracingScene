@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Init">
+      <UniqueIdentifier>{d3f932f6-e653-4a60-a974-18787f44a620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Objects">
+      <UniqueIdentifier>{5848d02a-7103-4c4e-acb4-5628def71c06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Objects\Header Files">
+      <UniqueIdentifier>{e340ec4f-7334-4ca7-b187-90b0d5ca0523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Objects\Source Files">
+      <UniqueIdentifier>{b8ff46ac-9100-4910-b586-74a35a4dca37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{30e40e69-2bc8-4f99-af1e-bf8a5e549e82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render Interface">
+      <UniqueIdentifier>{573e60ff-3405-4a85-a2b2-706e51fd3d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render Interface\Header Files">
+      <UniqueIdentifier>{6f96df19-5a06-45ef-9b8a-471214be079f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render Interface\Source Files">
+      <UniqueIdentifier>{1ee12a71-55c1-4843-88cc-846e614457db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Secondary Objects">
+      <UniqueIdentifier>{1aeedd0e-7e5c-489b-bd65-fb47739db6e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Secondary Objects\Header Files">
+      <UniqueIdentifier>{a22907a9-3222-4a68-a4be-c2dda068a945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Secondary Objects\Source Files">
+      <UniqueIdentifier>{508ec56d-f966-4041-b16e-1044272ee678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Header Files">
+      <UniqueIdentifier>{8f6be929-4b1d-4887-93e0-9ac210b1c884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Source Files">
+      <UniqueIdentifier>{5a980690-268c-42bd-9174-47c659796071}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\cpp\Main.cpp">
+      <Filter>Init</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\CGLSLProgram.cpp">
+      <Filter>Main Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\GUI.cpp">
+      <Filter>Main Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Stage.cpp">
+      <Filter>Main Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\ConcreteRenderController.cpp">
+      <Filter>Render Interface\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\FrameBuffer.cpp">
+      <Filter>Render Interface\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\RenderInterface.cpp">
+      <Filter>Render Interface\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Light.cpp">
+      <Filter>Secondary Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Projection.cpp">
+      <Filter>Secondary Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Texture.cpp">
+      <Filter>Secondary Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Transformation.cpp">
+      <Filter>Secondary Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Model.cpp">
+      <Filter>Model\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Routes.cpp">
+      <Filter>Model\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\VertexBufferObject.cpp">
+      <Filter>Model\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\ShaderProgram.cpp">
+      <Filter>Main Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\SkyBox.cpp">
+      <Filter>Main Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Camera.cpp">
+      <Filter>Secondary Objects\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\cpp\Properties.cpp">
+      <Filter>Model\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\headers\Main.h">
+      <Filter>Init</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\CGLSLProgram.h">
+      <Filter>Main Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\GUI.h">
+      <Filter>Main Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Stage.h">
+      <Filter>Main Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\ConcreteRenderController.h">
+      <Filter>Render Interface\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\FrameBuffer.h">
+      <Filter>Render Interface\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\RenderInterface.h">
+      <Filter>Render Interface\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Light.h">
+      <Filter>Secondary Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Projection.h">
+      <Filter>Secondary Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Texture.h">
+      <Filter>Secondary Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Transformation.h">
+      <Filter>Secondary Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Model.h">
+      <Filter>Model\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Routes.h">
+      <Filter>Model\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\VertexBufferObject.h">
+      <Filter>Model\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\ShaderProgram.h">
+      <Filter>Main Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\SkyBox.h">
+      <Filter>Main Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Camera.h">
+      <Filter>Secondary Objects\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\headers\Properties.h">
+      <Filter>Model\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
