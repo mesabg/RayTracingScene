@@ -52,37 +52,17 @@ float iSphere(in vec3 ro, in vec3 rd, in Sphere sphere, inout vec3 normal, inout
 
     //-- Update values
     closestHit = mix(closestHit, t, st);
-	normal = mix(normal, (sphere.position - (ro + rd * t)) / sphere.radio, st);
+	normal = normalize(sphere.position - (ro + rd * t));
 	material = mix(material, sphere.model.diffuse, st);
     return closestHit;
-}
-
-//-- Sphere normal
-vec3 nSphere(in vec3 pos, in Sphere sphere){
-    return (pos - sphere.position)/sphere.radio;
-}
-
-//-- Intersection manage
-int intersect (in vec3 ro, in vec3 rd, out float t){
-    t = 0.0;
-    //intersectionPoint = vec3(0.0);
-    //-- Intersect all spheres and return index
-    //for (int i=0; i < 3; i++){
-        //int i = 0;
-        //t = iSphere(ro, rd, spheres[i]);
-        //if ( t > 0.0 ){
-        //    spheres[i].normal = nSphere(ro - t*rd, spheres[i]);
-        //    return i;
-       // }
-    //}
-    return -1;
 }
 
 //-- Scene intersection
 float scene (float t, vec3 ro, vec3 rd, inout vec3 normal, inout vec3 material, float dist){
     //-- Check intersection with 3 spheres
-    for(int i=0;i<3;i++)
-        dist = iSphere(ro, rd, spheres[i], normal, material, dist);
+    dist = iSphere(ro, rd, spheres[0], normal, material, dist);
+    dist = iSphere(ro, rd, spheres[1], normal, material, dist);
+    dist = iSphere(ro, rd, spheres[2], normal, material, dist);
     return dist;
 }
 
@@ -192,8 +172,8 @@ void main(){
     //spheres[0].position.x *= 0.5*sin(time);
     spheres[0].position.y *= 0.5*cos(time);
 
-    /*spheres[1].position.y *= sin(time);
-    spheres[1].position.z *= cos(time);*/
+    //spheres[1].position.y *= sin(time);
+    //spheres[1].position.z *= cos(time);
 
     //spheres[2].position.x *= 0.5*sin(time);
     spheres[2].position.y *= 0.2*sin(time);
@@ -223,46 +203,15 @@ void main(){
             alpha = 1.0;
             transmit *= material;       
             ro += rd*dist;         
-            rd = refract(rd, normal, 0.32); 
+            //rd = refract(rd, normal, 0.32); 
+            rd = refract(rd, normal, 0.32);
             ro += rd*epsilon; //-- Reflect Ray Position
         }else{
             color += transmit * background(t,rd);
             break;
         }
     }
-    
-
-
-    //-- Defaults
-    
-    
-    //intersection = intersect(ro, rd, t);
-    //vec3 nml = normalize(spheres[0].position - (ro+rd*t));
-	//vec3 bgCol = background(time, rd);
-	//rd = reflect(rd, nml);
-	//vec3 col = background(time, rd) * spheres[0].model.diffuse;
-    //if ( intersection != -1 ) alpha = 1.0;
-	//finalColor = vec4( /*mix(bgCol, col, step(0.0, t))*/col, alpha );
-
-    //for(int i=0; i<3;){
-        //-- Intersecting ray with 3D Scene
-        /*intersection = intersect(ro, rd, t);
-
-        if ( intersection != -1 ){
-            //-- Sphere hitted
-            //float diffuse = clamp (dot(spheres[intersection].normal, uLight.direction), 0.0, 1.0);
-            //color +=  spheres[intersection].color;
-            color += BlinnPhong(spheres[intersection].normal, uLight.direction, rd, mainLight.model, spheres[intersection].model);
-            alpha = 1.0;
-
-            //-- Change Ray Origin and Direction
-            ro = ro - t*rd;
-            rd = normalize(refract(rd, spheres[intersection].normal, 0.60));
-            //i++;
-        }*/
-    //}
 
     //-- Final Color
     finalColor = vec4(color, alpha);
-    //finalColor = vec4( mix(color, color, step(0.0, t)), alpha );
 }

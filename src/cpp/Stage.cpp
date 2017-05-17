@@ -90,7 +90,7 @@ void Stage::initGLSLPrograms(){
 	//-- Structure to initialize
 	this->illuminationPrograms = new map<string, CGLSLProgram*>();
 	vector< map<string, string>* > *routes = new vector< map<string, string>* >({
-		new map<string, string>({ { "name", "RayTracing" },{ "vertex", "../src/shaders/raytracing.vert" }, { "geometry", "" }, { "fragment", "../src/shaders/raytracing.frag" } })
+		new map<string, string>({ { "name", "RayTracing" },{ "vertex", "../src/shaders/raytracing.vert" }, { "geometry", "" }, { "fragment", "../src/shaders/raytracing_att2.frag" } })
 	});
 
 	//-- Initialize Shader Programs
@@ -246,5 +246,6 @@ void Stage::render() {
 	//-- Disable functions
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_DEPTH_TEST);
+
 	glDisable(GL_BLEND);
 }
