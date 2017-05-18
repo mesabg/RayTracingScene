@@ -39,6 +39,7 @@ private:
 	bool clicked;
 	int xPos, yPos;
 	int xPosFirst, yPosFirst;
+	bool ImALight;
 
 	void buildModels();
 	Stage(RenderController* renderController, const float width, const float height);

@@ -18,7 +18,7 @@ void Stage::buildModels(){
 	//-- Scale, Position, Angle, Rotation Direction
 
 	//-- For Sponza
-	transformations.push_back(new Transformation( 0.3f, glm::vec3(0.0f, 0.0f, 0.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f)));
+	transformations.push_back(new Transformation( 0.01f, glm::vec3(0.0f, -2.0f, 0.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f)));
 
 	//-- For Balls
 	transformations.push_back(new Transformation(0.5f, glm::vec3(-100.0f, 120.0f, 0.0f), 0.0f, glm::vec3(0.0f, 1.0f, 0.0f)));
@@ -59,7 +59,7 @@ Stage::Stage(RenderController* renderController, const float width, const float 
 	glClearDepth(1.0);
 
 	//-- Init Camera
-	this->camera = new Camera(glm::vec3(319.0f, 60.0f, -10.0f), glm::vec3(305.0f, 60.0f, -13.0f), glm::vec3(0.0f, 1.0f, 0.0f), 800.0f, 0.001f);
+	this->camera = new Camera(glm::vec3(6.0f, 0.5f, -0.2f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 10.0f, 0.001f);
 	//this->camera = new Camera(vec3(319.0f, 60.0f, -10.0f), vec3(305.0f, 60.0f, -13.0f), vec3(0.0f, 1.0f, 0.0f), 20.0f, 0.001f);
 	this->camera->SetMovingKeys('W', 'S', 'A', 'D');
 
@@ -74,6 +74,9 @@ Stage::Stage(RenderController* renderController, const float width, const float 
 	
 	//-- Finalize VBO Structure
 	Model::FinalizeVBO();
+
+	//-- I am a light
+	this->ImALight = false;
 }
 
 Stage::~Stage() {
@@ -90,7 +93,7 @@ void Stage::initGLSLPrograms(){
 	//-- Structure to initialize
 	this->illuminationPrograms = new map<string, CGLSLProgram*>();
 	vector< map<string, string>* > *routes = new vector< map<string, string>* >({
-		new map<string, string>({ { "name", "RayTracing" },{ "vertex", "../src/shaders/raytracing.vert" }, { "geometry", "" }, { "fragment", "../src/shaders/raytracing_att2.frag" } })
+		new map<string, string>({ { "name", "RayTracing" },{ "vertex", "../src/shaders/raytracing.vert" }, { "geometry", "" }, { "fragment", "../src/shaders/scene.frag" } })
 	});
 
 	//-- Initialize Shader Programs
@@ -153,36 +156,8 @@ void Stage::Notify(string message, void* data) {
 		int key = ((int*)data)[0];
 		int action = ((int*)data)[1];
 		this->camera->keyMove(key, action);
-	} else if (message == "eventMouseMove") {
-		//this->camera->RotateWithMouse();
+		if (key == GLFW_KEY_E && action == GLFW_PRESS) this->ImALight = !this->ImALight;
 	}
-	
-	/*else if (message == "eventScroll")
-		this->camera->calculateZoom( *((int*)data) );
-	else if (message == "mouseButton") {
-		if (((int*)data)[0] == GLFW_MOUSE_BUTTON_LEFT && ((int*)data)[1] == GLFW_PRESS && !this->clicked) {
-			//-- Save first click
-			this->clicked = true;
-			this->xPos = ((int*)data)[2];
-			this->yPos = ((int*)data)[3];
-			this->xPosFirst = this->xPos;
-			this->yPosFirst = this->yPos;
-
-			this->camera->calculatePitch(0, 0, 0, this->yPos);
-			this->camera->calculateAngleAroundPlayer(0, 0, this->xPos, 0);
-		}
-		else if (((int*)data)[0] == GLFW_MOUSE_BUTTON_LEFT && ((int*)data)[1] == GLFW_PRESS) {
-			//-- Updating click values
-			this->xPos = this->xPosFirst - ((int*)data)[2];
-			this->yPos = this->yPosFirst - ((int*)data)[3];
-			this->camera->calculatePitch(0, 0, 0, this->yPos);
-			this->camera->calculateAngleAroundPlayer(0, 0, this->xPos, 0);
-		}
-		else if (((int*)data)[0] == GLFW_MOUSE_BUTTON_LEFT && ((int*)data)[1] == GLFW_RELEASE) {
-			//-- Key released
-			this->clicked = false;
-		}*/
-	//}
 }
 
 void Stage::render() {
@@ -237,6 +212,7 @@ void Stage::render() {
 	glUniform3f(glGetUniformLocation(id, "uLight.color"), dlSun.vColor.x, dlSun.vColor.y, dlSun.vColor.z);
 	glUniform3f(glGetUniformLocation(id, "uLight.direction"), dlSun.vDirection.x, dlSun.vDirection.y, dlSun.vDirection.z);
 	glUniform1f(glGetUniformLocation(id, "uLight.ambient"), dlSun.fAmbient);
+	glUniform1f(glGetUniformLocation(id, "uImALight"), (float)this->ImALight);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	this->illuminationPrograms->at("RayTracing")->disable();
 
